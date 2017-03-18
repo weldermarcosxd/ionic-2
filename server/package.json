@@ -1,16 +1,28 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "server to ionic backend",
-  "main": "server.js",
-  "scripts": {
-    "test": "test"
-  },
-  "keywords": [
-    "ionic",
-    "mysql",
-    "rest"
-  ],
-  "author": "weldermarcosxd@gmail.com",
-  "license": "ISC"
+    "name": "server",
+    "version": "1.0.0",
+    "description": "server to ionic backend",
+    "main": "server.js",
+    "scripts": {
+        "test": "test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/weldermarcosxd/ionic-2.git"
+    },
+    "keywords": [
+        "ionic",
+        "mysql",
+        "rest"
+    ],
+    "author": "weldermarcosxd@gmail.com",
+    "license": "ISC",
+    "homepage": "https://github.com/weldermarcosxd/ionic-2#readme",
+    "dependencies": {
+      "body-parser": "^1.16.1",
+      "consign": "^0.1.2",
+      "express": "^4.14.1",
+      "express-validator": "^3.1.2",
+      "mysql": "^2.13.0"
+    }
 }
