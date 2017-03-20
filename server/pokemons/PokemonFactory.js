@@ -1,5 +1,5 @@
 const http = require('https');
-const connectionFactory = require('../config/connectionFactory.js');
+const connectionFactory = require('../persistence/connectionFactory.js');
 const PokemonsDAO = require('./PokemonsDAO.js');
 const constants = require('../constants.js');
 const urlChecker = require('./urlChecker.js')();

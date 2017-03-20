@@ -1,13 +1,15 @@
 const mysql = require('mysql');
 const constants = require('../constants');
 
-function createDBConnection() {
+function createDBConnection(env) {
+  const info = env == "prod" ? constants.DB : constants.DB_TESTE;
+
   return mysql.createConnection({
-    host: constants.DB_HOST,
-    user: constants.DB_USER,
-    password: constants.DB_PASS,
-    database: constants.DB_DATABASE
-  })
+    host: info.host,
+    user: info.user,
+    password: info.pass,
+    database: info.database
+  });
 }
 
 module.exports = function () {

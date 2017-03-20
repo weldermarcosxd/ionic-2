@@ -14,7 +14,5 @@ exports.DB_TESTE = {
   "database": "pokemons_test"
 };
 
-exports.ENV = {
-  "prod":"production",
-  "test":"test"
-}
+exports.ENV = "prod";
+//exports.ENV = "test";

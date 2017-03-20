@@ -1,0 +1,1 @@
+create table pokemons (_id BIGINT primary key auto_increment,name varchar(255),attack double(10,3),created varchar(255),defense double(10,3),height double(10,3),speed double(10,3),types varchar(255),img varchar(255));
