@@ -2,6 +2,7 @@ const express = require('express');
 const consign = require('consign');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
+const cors = require('cors');
 
 module.exports = function () {
   var app = express();
@@ -9,6 +10,7 @@ module.exports = function () {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({"extended": "true"}));
   app.use(expressValidator());
+  app.use(cors());
 
   consign().include('routes').then('persistence').then('services').into(app);
 

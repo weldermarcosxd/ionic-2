@@ -1,14 +1,37 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Pokemons List
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let pokemon of pokemons | async">
+      <ion-item>
+        <ion-thumbnail item-left>
+          <img src="{{pokemon.img}}" />
+        </ion-thumbnail>
+        <h2>{{pokemon.name}}</h2>
+        <p>{{pokemon.types}}</p>
+        <button ion-button clear item-right>View</button>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="favorite(pokemon)">
+          <ion-icon name="star" ></ion-icon>
+          Favorite
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <button ion-button block icon-right (click)="loadMore()">
+    Load More
+    <ion-icon name="ios-more"></ion-icon>
+  </button>
+
 </ion-content>

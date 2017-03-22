@@ -1,18 +1,31 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/max';
+import { AppConstants } from './app-constants';
 
-/*
-  Generated class for the PokemonService provider.
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Injectable()
 export class PokemonService {
 
-  constructor(public http: Http) {
-    console.log('Hello PokemonService Provider');
+  url = this.appConstants.getUrl();
+
+  constructor(public http: Http, public appConstants: AppConstants) {
+  }
+
+  public getPokemons() {
+    return this.http.get(this.url + '/pokemons')
+      .map(response => response.json());
+  }
+
+  public getMorePokemons(offset: Number){
+    return this.http.get(this.url + '/pokemons?offset=' + offset)
+      .map(response => response.json());
+  }
+
+  public filterItems(search: String){
+    return this.http.get(this.url + '/pokemons/search?search=' + search)
+      .map(response => response.json());
   }
 
 }

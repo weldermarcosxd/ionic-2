@@ -16,6 +16,13 @@ PokemonDao.prototype.findById = function (_id, callback) {
   this._connection.query(query, callback);
 };
 
+PokemonDao.prototype.search = function (search, callback) {
+  console.log(search);
+  var query = 'SELECT * FROM pokemons WHERE name like ? limit 10';
+  query = mysql.format(query,search);
+  this._connection.query(query, callback);
+};
+
 PokemonDao.prototype.persist = function (pokemon, callback) {
   var query = 'INSERT INTO pokemons SET ?';
   query = mysql.format(query,pokemon);
