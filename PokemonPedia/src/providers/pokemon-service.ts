@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/max';
 import { AppConstants } from './app-constants';
 
-
 @Injectable()
 export class PokemonService {
 
@@ -13,7 +12,7 @@ export class PokemonService {
   constructor(public http: Http, public appConstants: AppConstants) {
   }
 
-  public getPokemons() {
+  public getPokemons(){
     return this.http.get(this.url + '/pokemons')
       .map(response => response.json());
   }

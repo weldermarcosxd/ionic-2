@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs/Observable'
 import { NavController, AlertController, ToastController } from 'ionic-angular';
 import { PokemonService } from '../../providers/pokemon-service';
+import { Pokemon } from '../pokemon/Pokemon';
 
 @Component({
   selector: 'page-home',
@@ -9,21 +9,31 @@ import { PokemonService } from '../../providers/pokemon-service';
 })
 export class HomePage {
 
-  pokemons: Observable<any>;
+  pokemons: Pokemon[];
   searchTerm: String = '';
   count: Number = 10;
 
   constructor(public navCtrl: NavController, public pokemonService: PokemonService, public alertController: AlertController, public toastController: ToastController) {
+  }
+
+  ngOnInit(){
     this.loadPokemons();
   }
 
   public loadPokemons() {
-    this.pokemons = this.pokemonService.getPokemons();
+    this.pokemonService.getPokemons()
+    .subscribe(pokemons => {
+      this.pokemons = pokemons;
+    });
   }
 
   public loadMore() {
     this.count = this.count.valueOf() + 10;
-    this.pokemons = this.pokemonService.getMorePokemons(this.count);
+    this.pokemonService.getMorePokemons(this.count)
+    .subscribe(pokemons => {
+      let novosPokemons = this.pokemons.concat(pokemons);
+      this.pokemons = novosPokemons;
+    });
   }
 
   public favorite(pokemon) {
@@ -40,7 +50,10 @@ export class HomePage {
   }
 
   setFilteredItems() {
-    this.pokemons = this.pokemonService.filterItems(this.searchTerm);
+    this.pokemonService.filterItems(this.searchTerm)
+    .subscribe(pokemons => {
+      this.pokemons = pokemons;
+    });
   }
 
 }

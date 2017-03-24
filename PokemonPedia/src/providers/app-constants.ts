@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 const CONFIG = {
-  "url":"http://192.168.0.101:3000"
+  // "url":"http://192.168.0.101:3000"
+     "url":"https://pokemonpedia.herokuapp.com/pokemons"
 }
 
 @Injectable()

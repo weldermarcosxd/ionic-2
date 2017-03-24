@@ -11,7 +11,7 @@
   <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let pokemon of pokemons | async">
+    <ion-item-sliding *ngFor="let pokemon of pokemons">
       <ion-item>
         <ion-thumbnail item-left>
           <img src="{{pokemon.img}}" />
