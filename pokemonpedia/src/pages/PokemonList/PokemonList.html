@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Pokemon List</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let pokemon of pokemons">
+      <ion-item>
+        <ion-thumbnail item-left>
+          <img src="{{pokemon.img}}" />
+        </ion-thumbnail>
+        <h2>{{pokemon.name}}</h2>
+        <p>{{pokemon.types}}</p>
+        <button ion-button clear item-right>View</button>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="favorite(pokemon)">
+          <ion-icon name="star" ></ion-icon>
+          Favorite
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <button ion-button block icon-right (click)="loadMore()">
+    Load More
+    <ion-icon name="ios-more"></ion-icon>
+  </button>
+
+</ion-content>

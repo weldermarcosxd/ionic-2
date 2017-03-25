@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Page Two</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="favorite != null">
+    <img [src]="favorite.img" />
+    <ion-card-content>
+      <ion-card-title>
+        {{favorite.name}}
+      </ion-card-title>
+      <ion-badge item-right>{{favorite.types}}</ion-badge>
+    </ion-card-content>
+    <ion-list>
+      <ion-item><ion-icon name="md-color-filter" item-left></ion-icon>Attack: {{favorite.attack}}</ion-item>
+      <ion-item><ion-icon name="md-medkit" item-left></ion-icon>Defense: {{favorite.defense}}</ion-item>
+      <ion-item><ion-icon name="ios-fastforward-outline" item-left></ion-icon>Speed: {{favorite.speed}}</ion-item>
+      <ion-item><ion-icon name="md-arrow-round-up" item-left></ion-icon>Height: {{favorite.height}}</ion-item>
+    </ion-list>
+  </ion-card>
+</ion-content>
