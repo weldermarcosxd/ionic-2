@@ -4,6 +4,7 @@ import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
+import { LoginPage } from '../pages/login-page/login-page';
 import { PokemonList } from '../pages/PokemonList/PokemonList';
 import { PokemonFavorite } from '../pages/PokemonFavorite/PokemonFavorite';
 import { PokemonService } from '../providers/pokemon-service';
@@ -13,6 +14,7 @@ import { AppConstants } from '../providers/app-constants';
 @NgModule({
   declarations: [
     MyApp,
+    LoginPage,
     PokemonList,
     PokemonFavorite
   ],
@@ -23,6 +25,7 @@ import { AppConstants } from '../providers/app-constants';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    LoginPage,
     PokemonList,
     PokemonFavorite
   ],
