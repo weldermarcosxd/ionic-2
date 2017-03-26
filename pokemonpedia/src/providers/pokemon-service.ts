@@ -17,7 +17,7 @@ export class PokemonService {
   }
 
   public getPokemon(_id: Number){
-    return this.http.get(this.url + '/pokemons?' + _id)
+    return this.http.get(this.url + '/pokemons?id=' + _id)
       .map(response => response.json());
   }
 
