@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AuthService } from '../providers/auth-service';
 import { LoginPage } from '../pages/login-page/login-page';
 import { PokemonList } from '../pages/PokemonList/PokemonList';
 import { PokemonFavorite } from '../pages/PokemonFavorite/PokemonFavorite';
@@ -12,20 +13,16 @@ import { PokemonFavorite } from '../pages/PokemonFavorite/PokemonFavorite';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-
   rootPage: any = LoginPage;
-
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private auth: AuthService) {
     this.initializeApp();
-
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Pokemon List', component: PokemonList },
       { title: 'Favorite Pokemon', component: PokemonFavorite }
     ];
-
   }
 
   initializeApp() {
@@ -44,6 +41,8 @@ export class MyApp {
   }
 
   logout() {
-    this.nav.setRoot(LoginPage);
+    this.auth.logout().subscribe(succ => {
+        this.nav.setRoot(LoginPage)
+    });
   }
 }

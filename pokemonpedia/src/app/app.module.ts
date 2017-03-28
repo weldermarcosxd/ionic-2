@@ -5,9 +5,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
 import { LoginPage } from '../pages/login-page/login-page';
+import { RegisterPage } from '../pages/register/register.ts';
 import { PokemonList } from '../pages/PokemonList/PokemonList';
 import { PokemonFavorite } from '../pages/PokemonFavorite/PokemonFavorite';
 import { PokemonService } from '../providers/pokemon-service';
+import { AuthService } from '../providers/auth-service';
 import { AppConstants } from '../providers/app-constants';
 
 
@@ -15,6 +17,7 @@ import { AppConstants } from '../providers/app-constants';
   declarations: [
     MyApp,
     LoginPage,
+    RegisterPage,
     PokemonList,
     PokemonFavorite
   ],
@@ -26,6 +29,7 @@ import { AppConstants } from '../providers/app-constants';
   entryComponents: [
     MyApp,
     LoginPage,
+    RegisterPage,
     PokemonList,
     PokemonFavorite
   ],
@@ -33,6 +37,7 @@ import { AppConstants } from '../providers/app-constants';
     StatusBar,
     SplashScreen,
     AppConstants,
+    AuthService,
     PokemonService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

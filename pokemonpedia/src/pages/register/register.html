@@ -14,7 +14,7 @@
       </ion-col>
     </ion-row>
 
-    <form (ngSubmit)="login()" #registerForm="ngForm">
+    <form (ngSubmit)="register()" #registerForm="ngForm">
       <ion-row>
         <ion-col>
           <ion-list inset [@bounceInBottom]="formState">
@@ -35,8 +35,8 @@
 
       <ion-row>
         <ion-col>
-          <button ion-button class="login-button" [@fadeIn]="loginState" type="submit" [disabled]="!registerForm.form.valid" (click)="openPage()">Login</button>
-          <button ion-button class="login-button" [@fadeIn]="loginState" type="submit" (click)="createAccount()">Register</button>
+          <button ion-button class="login-button" [@fadeIn]="loginState" type="submit" [disabled]="!registerForm.form.valid">Register</button>
+          <button ion-button class="login-button" [@fadeIn]="loginState" (click)="goToLogin()">Back</button>
         </ion-col>
       </ion-row>
     </form>

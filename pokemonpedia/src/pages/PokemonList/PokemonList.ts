@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { PokemonService } from '../../providers/pokemon-service';
+import { AuthService } from '../../providers/auth-service';
 import { Pokemon } from '../../model/pokemon/Pokemon';
 
 @Component({
@@ -13,11 +14,18 @@ export class PokemonList {
   pokemons: Pokemon[];
   searchTerm: String = '';
   count: Number = 10;
+  username: String = '';
+  email: String = '';
 
-  constructor(public navCtrl: NavController, public pokemonService: PokemonService, public alertController: AlertController, public storage: Storage, public toastController: ToastController) {}
+  constructor(public navCtrl: NavController, private auth: AuthService, public pokemonService: PokemonService, public alertController: AlertController, public storage: Storage, public toastController: ToastController) {}
 
   ngOnInit(){
     this.loadPokemons();
+    let info = this.auth.getUserInfo();
+    if(null != info){
+      this.username = info.name;
+      this.email = info.email;
+    }
   }
 
   public loadPokemons() {

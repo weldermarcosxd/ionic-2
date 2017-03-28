@@ -1,12 +1,11 @@
 import { Component, trigger, state, style, transition, animate, keyframes } from '@angular/core';
-import { PokemonList } from '../PokemonList/PokemonList';
-import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
-import { RegisterPage } from '../register/register';
+import { LoginPage } from '../login-page/login-page';
 
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login-page.html',
+  selector: 'page-register',
+  templateUrl: 'register.html',
 
   animations: [
 
@@ -58,55 +57,47 @@ import { RegisterPage } from '../register/register';
     ])
   ]
 })
-export class LoginPage {
+export class RegisterPage {
 
-  loading: Loading;
+  createSuccess = false;
   registerCredentials = { email: '', password: '' };
 
-  constructor(public navCtrl: NavController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthService, private alertCtrl: AlertController) { }
 
-  public createAccount() {
-    this.navCtrl.push(RegisterPage);
-  }
-
-  public login() {
-    this.showLoading()
-    this.auth.login(this.registerCredentials).subscribe(allowed => {
-      if (allowed) {
-        setTimeout(() => {
-          this.loading.dismiss();
-          this.navCtrl.setRoot(PokemonList)
-        });
+  public register() {
+    this.auth.register(this.registerCredentials).subscribe(success => {
+      if (success) {
+        this.createSuccess = true;
+        this.showPopup("Success", "Account created.");
       } else {
-        this.showError("Access Denied");
+        this.showPopup("Error", "Problem creating account.");
       }
     },
       error => {
-        this.showError(error);
+        this.showPopup("Error", error);
       });
   }
 
-  showLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-    this.loading.present();
-  }
-
-  showError(text) {
-    setTimeout(() => {
-      this.loading.dismiss();
-    });
-
+  showPopup(title, text) {
     let alert = this.alertCtrl.create({
-      title: 'Fail',
+      title: title,
       subTitle: text,
-      buttons: ['OK']
+      buttons: [
+        {
+          text: 'OK',
+          handler: data => {
+            if (this.createSuccess) {
+              this.navCtrl.popToRoot();
+            }
+          }
+        }
+      ]
     });
-    alert.present(prompt);
+    alert.present();
   }
 
-  openPage() {
-    this.navCtrl.setRoot(PokemonList);
+  goToLogin(){
+    this.navCtrl.setRoot(LoginPage);
   }
+
 }
